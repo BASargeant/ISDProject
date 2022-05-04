@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <title>Safety Pending</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <style>
+        #map {
+            width: 100%
+        }
+
+        .text {
+            font-family: 'Courier New', Courier, monospace
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-areas:
+                'hdr hdr hdr hdr'
+                'nav nav nav nav'
+                'main main main main'
+                'main main main main'
+                'pf pf pf pf';
+        }
+
+        header {
+            grid-area: hdr;
+        }
+
+        nav {
+            grid-area: nav;
+        }
+
+        main {
+            grid-area: main;
+        }
+
+        footer {
+            grid-area: pf;
+        }
+
+        .search {
+            float: right;
+        }
+    </style>
+
+   
+
+</head>
+
+<body>
+    <div class="grid-container">
+        <%- include("header.ejs"); %>
+
+        <main>
+            HOME PAGE
+            <footer>
+                <hr>
+                Footer
+                <hr>
+            </footer>
+
+    </div>
+</body>
+
+</html>
+
+

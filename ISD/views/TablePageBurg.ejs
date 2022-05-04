@@ -1,0 +1,86 @@
+<html>
+
+<head>
+    <title>Safety Pending</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <style>
+        #map {
+            width: 100%
+        }
+
+        .text {
+            font-family: 'Courier New', Courier, monospace
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-areas:
+                'hdr hdr hdr hdr'
+                'nav nav nav nav'
+                'main main main main'
+                'main main main main'
+                'pf pf pf pf';
+        }
+
+        header {
+            grid-area: hdr;
+        }
+
+        nav {
+            grid-area: nav;
+        }
+
+        main {
+            grid-area: main;
+        }
+
+        footer {
+            grid-area: pf;
+        }
+
+        .search {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="grid-container">
+            <%- include("header.ejs"); %>
+
+        <main>
+            <div class="w3-bar w3-green">
+                <button id="Names" class="w3-bar-item w3-button w3-ripple" onclick = "location.href='Tablepage.html?type=TimePeriod'">Time Period</button>
+                <button class="w3-bar-item w3-button w3-ripple" onclick = "location.href='TablepageBurg.html?type=Burglarys'">Burglarys</button>
+                <button class="w3-bar-item w3-button w3-ripple" onclick = "location.href='TablepageViolent.html?type=ViolentAndSexualOffences'">Violent and Sexual Offences</button>
+              </div>
+            
+
+            <link rel="stylesheet"   
+            href="https://www.w3schools.com/w3css/4/w3.css">
+           <link rel="stylesheet"
+             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+           />
+            <!-- <iframe src="https://opendata.bristol.gov.uk/explore/embed/dataset/crime-recorded-by-police-by-selected-offence-groups-in-bristol-by-ward/table/?disjunctive.ward_name&static=false&datasetcard=false" width="800" height="600" frameborder="0"></iframe>         -->
+        <table class="w3-table w3-bordered">
+            <tr>
+                <th>Ward Code</th><th>Ward Name</th><th>Burglarys</th>
+            </tr>
+            <% for (var i=0; i<results.length; i++) { %>
+                <tr><td><%= results[i]['Ward Code'] %></td><td class = 'name'><%= results[i]['Ward Name'] %></td><td><%= results[i]['Burglary (number)'] %></td></tr>
+            <% } %>
+
+        </table>
+        </main>    
+            <footer>
+            <hr>
+            Footer
+            <hr>
+        </footer>
+
+    </div>
+</body>
+
+</html>

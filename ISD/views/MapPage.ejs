@@ -1,0 +1,133 @@
+<html>
+
+<head>
+    <title>Safety Pending</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <style>
+        #map {
+            width: 100%
+        }
+
+        .text {
+            font-family: 'Courier New', Courier, monospace
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-areas:
+                'hdr hdr hdr hdr'
+                'nav nav nav nav'
+                'main main main main'
+                'main main main main'
+                'pf pf pf pf';
+        }
+
+        header {
+            grid-area: hdr;
+        }
+
+        nav {
+            grid-area: nav;
+        }
+
+        main {
+            grid-area: main;
+        }
+
+        footer {
+            grid-area: pf;
+        }
+
+        .search {
+            float: right;
+        }
+    </style>
+    
+       
+</head>
+
+<%- include("header.ejs"); %>
+<body>
+    <div class="grid-container">
+        <%- include("header.ejs"); %>
+        <%- include("header.ejs"); %>
+        <main>
+            <!--iframe src="https://opendata.bristol.gov.uk/explore/embed/dataset/public-bike-pumps/map/?location=12,<%= lat %>,<%= lon %>&basemap=jawg.streets&static=false&datasetcard=false&scrollWheelZoom=false" width="800" height="600" frameborder="0"></iframe-->
+            <div id="map" style="height:600px; width:800px"></div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/2.13.1/OpenLayers.js"></script>
+            <script>
+                map = new OpenLayers.Map("map");
+                var maplayer = new OpenLayers.Layer.OSM(
+                    "OpenStreetMap", 
+                    // Official OSM tileset as forced HTTPS URLs
+                    [
+                        'https://a.tile.openstreetmap.org/${z}/${x}/${y}.png',
+                        'https://b.tile.openstreetmap.org/${z}/${x}/${y}.png',
+                        'https://c.tile.openstreetmap.org/${z}/${x}/${y}.png'
+                    ], null);
+                map.addLayer(maplayer);
+        
+                var centre = new OpenLayers.LonLat( <%= lon %> ,<%= lat %> )
+                .transform(
+                        new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                        map.getProjectionObject() // to Spherical Mercator Projection
+                ); 
+                var zoom=16; // appropriate for 500m radius
+                map.setCenter (centre, zoom);   
+                
+                //add markers
+                markers = new OpenLayers.Layer.Markers("Markers");
+                    map.addLayer(markers);
+            
+                    <% for (var i=0; i<results.length; i++) { %>
+                    <% var latlon = results[i].geo_point_2d.split(','); %>
+                    var lonLat = new OpenLayers.LonLat( <%= latlon[1] %> ,<%= latlon[0] %> )
+                    .tr ansform(
+                            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                            map.getProjectionObject() // to Spherical Mercator Projection
+                    );
+                    var marker = new OpenLayers.Marker(lonLat);
+
+                    markers.addMarker(marker);
+                    <% } %>
+
+                    <% var markerID = results[i].OBJECTID; %>
+
+                    //Make the marker clickable
+                    marker.events.register("click", marker, function() {
+                    window.location.href="record.html?id=<%= markerID %>"
+                    });
+                    markers.addMarker(marker);
+        </script>
+        </main>
+    </div>   
+</body>
+
+</html>
+
+
+
+
+
+
+
+<!-- <body>
+    <div class="grid-container">
+        <div class="grid-container">
+            <%- include("header.ejs"); %>
+
+        <main>
+            
+             <iframe
+                src="https://opendata.bristol.gov.uk/explore/embed/dataset/crime-recorded-by-police-by-selected-offence-groups-in-bristol-by-ward/map/?disjunctive.ward_name&location=10,<%= lat %>,<%= lon %>&basemap=jawg.streets&static=false&datasetcard=false&scrollWheelZoom=true"
+                width="800" height="600" frameborder="0"></iframe> 
+                
+            <footer>
+                <hr>
+                Footer
+                <hr>
+            </footer>
+
+    </div>
+</body> -->
