@@ -61,15 +61,15 @@ Steps:
 - The user can enter a Ward Name into a search bar located to the top right of the page (e.g. "Ashley") for it to display all wards that contain the word "Ashley" along with their crime statistics and time period.
 
 
-| TODO: USE-CASE ID e.g. UC3 | Map - Jamie | 
+| UC3 | Map - Jamie | 
 | -------------------------------------- | ------------------- |
-| **Description** | TODO: Goal to be achieved by use case and sources for requirement |
-| **Actors** | TODO: List of actors involved in use case |
-| **Assumptions** | TODO: Pre/post-conditions if any</td></tr>
-| **Steps** | TODO: Interactions between actors and system necessary to achieve goal |
-| **Variations** | TODO: OPTIONAL - Any variations in the steps of a use case |
-| **Non-functional** | TODO: OPTIONAL - List of non-functional requirements that the use case must meet. |
-| **Issues** | TODO: OPTIONAL - List of issues that remain to be resolved |
+ Description: For the map to be presented in a professional manner and for it to be easily useable by the user 
+
+ Actors: Families, Students, Tourists
+
+ Assumptions: None
+
+Steps User can click on the button to open the map page, User Is then presented with a fully interactive map, map focuses on their general location
 
 
 ![UseCase Diagram](images/UseCaseDiagram.png)
