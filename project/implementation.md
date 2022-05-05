@@ -37,7 +37,5 @@ geo_point_2d (longitude and latitude of ward)
     ├── TablePageBurg.ejs
     └── TablePageViolent.ejs
 
-## Software Architecture
-TODO: Describe the major components of your architecture. Are any particular architectural styles being used?
 
 ![Component Diagram](images/componentdiagram.png)
